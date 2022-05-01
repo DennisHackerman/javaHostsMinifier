@@ -121,10 +121,10 @@ public class hostMinifier {
     }
 
     static String removeWhitespaces(String line) {
-
-        line = line.strip();
+        
         line = line.replaceAll(" {2,}", " ");
         line = line.replaceAll("\\t", " ");
+        line = line.strip();
 
         if(line.length() == 0) {
             return null;
