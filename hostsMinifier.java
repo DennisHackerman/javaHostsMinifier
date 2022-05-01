@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -7,10 +9,10 @@ import static java.nio.file.Files.writeString;
 
 public class hostMinifier {
 
-    public static void main(String[] args) {
+    public static void main(String @NotNull [] args) {
 
         String hostsPath;
-        if(args[0] == "windows") {
+        if(args[0].compareTo("windows") == 0) {
             hostsPath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
         } else {
             hostsPath = args[0];
