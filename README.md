@@ -1,2 +1,4 @@
-This is a Java program that downloads, minifies and correctly places a host file from a URL u pass as the first argument. Needs too be a plain text file.
+This is a Java program that downloads, minifies and correctly places a host file from a URL.
 Works only in Windows, needs Windows to be installed on C: and requires admin rights (because of the location of the hosts file).
+Usage: (compile and) run the java program. Before running, pass the location of your hosts file (if you're on windows, just input "windows" instead) and the URL from where to download.
+Hosts files I like: Someonewhocares.org, EasyList, AdGuard, StevenBlack Hosts
