@@ -9,17 +9,27 @@ public class hostMinifier {
 
     public static void main(String[] args) {
 
-        final String hostsPath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
-        final String hostsURL = args[0];
+        String hostsPath;
+        if(args[0] == "windows") {
+            hostsPath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
+        } else {
+            hostsPath = args[0];
+        }
+
+        final String hostsURL = args[1];
 
         File htmlPage = downloadWebpage(hostsURL);
+        if(htmlPage == null) {
+            return;
+        }
 
         try {
             writeString(Path.of(hostsPath), minify(htmlPage.getPath()));
-            htmlPage.delete();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        htmlPage.delete();
     }
 
     static File downloadWebpage(String urlString) {
