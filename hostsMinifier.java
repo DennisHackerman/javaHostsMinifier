@@ -1,4 +1,5 @@
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
 
@@ -9,14 +10,14 @@ public class hostMinifier {
     public static void main(String[] args) {
 
         final String hostsPath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
-        final String hostsURL = "https://someonewhocares.org/hosts/zero/hosts";
+        final String hostsURL = args[0];
 
         File htmlPage = downloadWebpage(hostsURL);
 
         try {
             writeString(Path.of(hostsPath), minify(htmlPage.getPath()));
             htmlPage.delete();
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -46,7 +47,11 @@ public class hostMinifier {
 
             return hosts;
 
-        } catch (Exception e) {
+        } catch (MalformedURLException e) {
+            System.err.println("Malformed URL!");
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
